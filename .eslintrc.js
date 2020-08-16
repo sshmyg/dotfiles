@@ -1,64 +1,81 @@
 module.exports = {
-    root: true,
-    plugins: ['jest', 'promise', 'react-hooks', 'import', 'react', 'prettier'],
-    extends: [
-        'eslint:recommended',
+  root: true,
+  parser: 'babel-eslint',
+  // parser: '@typescript-eslint/parser',
+  plugins: ['jest', 'promise', 'react-hooks', 'import', 'react', 'prettier'],
+  extends: [
+    'eslint:recommended',
 
-        'plugin:promise/recommended',
+    'plugin:promise/recommended',
 
-        'plugin:jest/recommended',
+    'plugin:jest/recommended',
 
-        'plugin:react/recommended',
+    'plugin:react/recommended',
 
-        'plugin:import/errors',
-        'plugin:import/warnings',
+    'plugin:import/errors',
+    'plugin:import/warnings',
 
-        'prettier',
-        'prettier/react',
+    'prettier',
+    'prettier/react',
+
+    //'plugin:@typescript-eslint/recommended',
+  ],
+  env: {
+    es6: true,
+    node: true,
+    browser: true,
+    jest: true,
+  },
+  parserOptions: {
+    ecmaVersion: 7,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  rules: {
+    curly: ['error', 'all'],
+    'no-param-reassign': ['error', { props: false }],
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+    'no-mixed-operators': 'off',
+
+    'react/prop-types': 'off',
+    'react/destructuring-assignment': 'off',
+    'react/prefer-stateless-function': 'warn',
+
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+
+    'import/order': [
+      'warn',
+      {
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
+        ],
+        'newlines-between': 'always-and-inside-groups',
+      },
     ],
-    env: {
-        es6: true,
-        node: true,
-        browser: true,
-        jest: true,
-    },
-    globals: {
-        window: true,
-        export: true,
-    },
-    parser: 'babel-eslint',
-    parserOptions: {
-        ecmaVersion: 7,
-        sourceType: 'module',
-        ecmaFeatures: {
-            jsx: true,
-        },
-    },
-    rules: {
-        curly: ['error', 'all'],
-        'no-param-reassign': ['error', { props: false }],
-        'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
-        'no-mixed-operators': 'off',
 
-        'react/prop-types': 'off',
-        'react/destructuring-assignment': 'off',
-        'react/prefer-stateless-function': 'warn',
-
-        'react-hooks/rules-of-hooks': 'error',
-        'react-hooks/exhaustive-deps': 'warn',
-
-        'prettier/prettier': 'error',
+    'prettier/prettier': 'error',
+  },
+  settings: {
+    react: {
+      version: 'detect',
     },
-    settings: {
-        'import/resolver': {
-            'babel-module': {
-                /* alias: {
-                    '@/assets': './assets',
-                    '@': './src',
-                }, */
-                cwd: 'babelrc',
-                extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
-            },
-        },
+    'import/resolver': {
+      'babel-module': {
+        /* alias: {
+            '@/assets': './assets',
+            '@': './src',
+        }, */
+        cwd: 'babelrc',
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      },
     },
+  },
 };
